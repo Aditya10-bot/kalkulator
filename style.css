@@ -8,27 +8,27 @@
     --calc-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
     --text-primary: #f1f5f9;
     --text-secondary: #94a3b8;
-    
+
     --btn-num-bg: rgba(255, 255, 255, 0.05);
     --btn-num-color: #f1f5f9;
     --btn-num-hover: rgba(255, 255, 255, 0.12);
     --btn-num-active: rgba(255, 255, 255, 0.2);
-    
+
     --btn-op-bg: rgba(99, 102, 241, 0.12);
     --btn-op-color: #818cf8;
     --btn-op-hover: rgba(99, 102, 241, 0.25);
     --btn-op-active: rgba(99, 102, 241, 0.35);
-    
+
     --btn-fn-bg: rgba(148, 163, 184, 0.1);
     --btn-fn-color: #cbd5e1;
     --btn-fn-hover: rgba(148, 163, 184, 0.2);
     --btn-fn-active: rgba(148, 163, 184, 0.3);
-    
+
     --btn-equals-bg: linear-gradient(135deg, #6366f1, #4f46e5);
     --btn-equals-color: #ffffff;
     --btn-equals-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
     --btn-equals-hover: linear-gradient(135deg, #818cf8, #6366f1);
-    
+
     --display-bg: rgba(13, 13, 21, 0.45);
     --display-border: rgba(255, 255, 255, 0.03);
     --history-bg: rgba(20, 20, 32, 0.95);
@@ -36,7 +36,7 @@
     --history-item-hover: rgba(255, 255, 255, 0.04);
     --toggle-active: #6366f1;
     --glow-color: rgba(99, 102, 241, 0.15);
-    
+
     --font-numbers: 'Outfit', sans-serif;
     --font-ui: 'Inter', sans-serif;
 }
@@ -49,27 +49,27 @@
     --calc-shadow: 0 24px 60px rgba(100, 116, 139, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.8);
     --text-primary: #1e293b;
     --text-secondary: #64748b;
-    
+
     --btn-num-bg: rgba(255, 255, 255, 0.7);
     --btn-num-color: #334155;
     --btn-num-hover: rgba(255, 255, 255, 1);
     --btn-num-active: rgba(226, 232, 240, 1);
-    
+
     --btn-op-bg: rgba(79, 70, 229, 0.07);
     --btn-op-color: #4f46e5;
     --btn-op-hover: rgba(79, 70, 229, 0.15);
     --btn-op-active: rgba(79, 70, 229, 0.25);
-    
+
     --btn-fn-bg: rgba(100, 116, 139, 0.07);
     --btn-fn-color: #475569;
     --btn-fn-hover: rgba(100, 116, 139, 0.15);
     --btn-fn-active: rgba(100, 116, 139, 0.25);
-    
+
     --btn-equals-bg: linear-gradient(135deg, #4f46e5, #6366f1);
     --btn-equals-color: #ffffff;
     --btn-equals-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
     --btn-equals-hover: linear-gradient(135deg, #6366f1, #818cf8);
-    
+
     --display-bg: rgba(248, 250, 252, 0.7);
     --display-border: rgba(255, 255, 255, 0.8);
     --history-bg: rgba(255, 255, 255, 0.98);
@@ -231,6 +231,7 @@ body {
 .display-formula::-webkit-scrollbar {
     height: 3px;
 }
+
 .display-formula::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
@@ -255,6 +256,7 @@ body {
 .display-input::-webkit-scrollbar {
     height: 3px;
 }
+
 .display-input::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
@@ -281,7 +283,8 @@ body {
 }
 
 .calculator-card.scientific .scientific-pad {
-    width: 204px; /* 3 columns * 60px + gap spacing */
+    width: 204px;
+    /* 3 columns * 60px + gap spacing */
     opacity: 1;
     pointer-events: auto;
 }
@@ -319,7 +322,7 @@ button.calc-btn::after {
     left: 50%;
     width: 120%;
     height: 120%;
-    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 60%);
     transform: translate(-50%, -50%) scale(0);
     transition: transform 0.3s ease-out, opacity 0.3s ease;
     opacity: 0;
@@ -558,11 +561,11 @@ button.btn-equals:active {
         width: 100%;
         max-width: 360px;
     }
-    
+
     .calculator-card.scientific .keypad-wrapper {
         flex-direction: column;
     }
-    
+
     .calculator-card.scientific .scientific-pad {
         width: 100%;
         grid-template-columns: repeat(5, 1fr);
