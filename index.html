@@ -1,34 +1,134 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Calculator</title>
+    <title>Kalkulator Premium - Glassmorphism Edition</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="calculator">
-        <input type="text" id="display" disabled>
-        <div class="buttons">
-            <button onclick="clearDisplay()">C</button>
-            <button onclick="deleteLast()">DEL</button>
-            <button onclick="appendValue('%')">%</button>
-            <button onclick="appendValue('/')">/</button>
-            <button onclick="appendValue('7')">7</button>
-            <button onclick="appendValue('8')">8</button>
-            <button onclick="appendValue('9')">9</button>
-            <button onclick="appendValue('*')">*</button>
-            <button onclick="appendValue('4')">4</button>
-            <button onclick="appendValue('5')">5</button>
-            <button onclick="appendValue('6')">6</button>
-            <button onclick="appendValue('-')">-</button>
-            <button onclick="appendValue('1')">1</button>
-            <button onclick="appendValue('2')">2</button>
-            <button onclick="appendValue('3')">3</button>
-            <button onclick="appendValue('+')">+</button>
-            <button onclick="appendValue('0')">0</button>
-            <button onclick="appendValue('.')">.</button>
-            <button onclick="calculate()">=</button>
+    <div class="wrapper">
+        <div class="calculator-card" id="calculator">
+            <!-- Toolbar Atas -->
+            <div class="toolbar">
+                <div class="brand">KALKULATOR</div>
+                <div class="controls">
+                    <!-- Toggle Suara -->
+                    <button class="control-btn active" id="toggle-sound" title="Aktifkan/Matikan Suara">
+                        <svg viewBox="0 0 24 24" id="sound-on-icon">
+                            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                        </svg>
+                        <svg viewBox="0 0 24 24" id="sound-off-icon" style="display:none;">
+                            <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.21.05-.42.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+                        </svg>
+                    </button>
+                    <!-- Toggle Ilmiah (Scientific) -->
+                    <button class="control-btn" id="toggle-sci" title="Mode Ilmiah">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 19h2.2l1.3-4.5h4v-1.8h-3.5l1.1-3.7h3v-1.8h-2.5l0.7-2.2H9.2l-0.7 2.2H6v1.8h2l-1.3 4.5H4.5v1.8H6zm9.5-6.3l2 2.8H20l-3-4.2 2.8-4H17.2l-1.7 2.5-1.7-2.5H11l2.8 4-3 4.2h2.5l2.2-2.8z"/>
+                        </svg>
+                    </button>
+                    <!-- Toggle Riwayat -->
+                    <button class="control-btn" id="toggle-history" title="Riwayat Kalkulasi">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.57.72-1.21-3.5-2.08V8h-1.5z"/>
+                        </svg>
+                    </button>
+                    <!-- Toggle Tema -->
+                    <button class="control-btn" id="toggle-theme" title="Ganti Tema">
+                        <svg viewBox="0 0 24 24" id="theme-dark-icon">
+                            <path d="M12.3 22h-.1c-5.4 0-10-4.6-10-10 0-4.3 2.9-8.1 7.1-9.3.5-.1 1 .1 1.3.5.3.4.3.9 0 1.3-1.2 1.6-1.8 3.6-1.8 5.5 0 5 4 9 9 9 2 0 3.9-.6 5.5-1.8.4-.3.9-.3 1.3 0 .4.3.6.8.5 1.3-1.1 4.2-4.9 7.1-9.3 7.1z"/>
+                        </svg>
+                        <svg viewBox="0 0 24 24" id="theme-light-icon" style="display:none;">
+                            <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.01c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tampilan Layar (Display) -->
+            <div class="display-container">
+                <div class="display-formula" id="formula-display"></div>
+                <div class="display-input" id="display" tabindex="0">0</div>
+            </div>
+
+            <!-- Area Keypad -->
+            <div class="keypad-wrapper">
+                <!-- Panel Tombol Ilmiah (Scientific) -->
+                <div class="scientific-pad" id="scientific-pad">
+                    <button class="calc-btn btn-fn" onclick="toggleDegRad()" id="btn-degrad">DEG</button>
+                    <button class="calc-btn btn-fn" onclick="appendOperator('(')">(</button>
+                    <button class="calc-btn btn-fn" onclick="appendOperator(')')">)</button>
+                    
+                    <button class="calc-btn btn-fn" onclick="appendFunction('sin')">sin</button>
+                    <button class="calc-btn btn-fn" onclick="appendFunction('cos')">cos</button>
+                    <button class="calc-btn btn-fn" onclick="appendFunction('tan')">tan</button>
+                    
+                    <button class="calc-btn btn-fn" onclick="appendFunction('asin')">sin⁻¹</button>
+                    <button class="calc-btn btn-fn" onclick="appendFunction('acos')">cos⁻¹</button>
+                    <button class="calc-btn btn-fn" onclick="appendFunction('atan')">tan⁻¹</button>
+                    
+                    <button class="calc-btn btn-fn" onclick="appendFunction('ln')">ln</button>
+                    <button class="calc-btn btn-fn" onclick="appendFunction('log')">log</button>
+                    <button class="calc-btn btn-fn" onclick="appendOperator('^')">xʸ</button>
+                    
+                    <button class="calc-btn btn-fn" onclick="appendFunction('sqrt')">√</button>
+                    <button class="calc-btn btn-fn" onclick="appendConstant('π')">π</button>
+                    <button class="calc-btn btn-fn" onclick="appendConstant('e')">e</button>
+                </div>
+
+                <!-- Panel Tombol Utama (Basic) -->
+                <div class="basic-pad">
+                    <button class="calc-btn btn-fn" onclick="clearDisplay()">C</button>
+                    <button class="calc-btn btn-fn" onclick="deleteLast()" aria-label="Hapus">
+                        <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: currentColor;">
+                            <path d="M22 3H7c-.69 0-1.23.35-1.59.88L0 12l5.41 8.11c.36.53.9.89 1.59.89h15c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H7.07L2.4 12l4.66-7H22v14zm-11.59-2L14 13.41 17.59 17 19 15.59 15.41 12 19 8.41 17.59 7 14 10.59 10.41 7 9 8.41 12.59 12 9 15.59z"/>
+                        </svg>
+                    </button>
+                    <button class="calc-btn btn-fn" onclick="appendOperator('%')">%</button>
+                    <button class="calc-btn btn-op" onclick="appendOperator('/')">/</button>
+
+                    <button class="calc-btn btn-num" onclick="appendNumber('7')">7</button>
+                    <button class="calc-btn btn-num" onclick="appendNumber('8')">8</button>
+                    <button class="calc-btn btn-num" onclick="appendNumber('9')">9</button>
+                    <button class="calc-btn btn-op" onclick="appendOperator('*')">×</button>
+
+                    <button class="calc-btn btn-num" onclick="appendNumber('4')">4</button>
+                    <button class="calc-btn btn-num" onclick="appendNumber('5')">5</button>
+                    <button class="calc-btn btn-num" onclick="appendNumber('6')">6</button>
+                    <button class="calc-btn btn-op" onclick="appendOperator('-')">-</button>
+
+                    <button class="calc-btn btn-num" onclick="appendNumber('1')">1</button>
+                    <button class="calc-btn btn-num" onclick="appendNumber('2')">2</button>
+                    <button class="calc-btn btn-num" onclick="appendNumber('3')">3</button>
+                    <button class="calc-btn btn-op" onclick="appendOperator('+')">+</button>
+
+                    <button class="calc-btn btn-num" style="grid-column: span 2;" onclick="appendNumber('0')">0</button>
+                    <button class="calc-btn btn-num" onclick="appendDecimal('.')">.</button>
+                    <button class="calc-btn btn-equals" onclick="calculate()">=</button>
+                </div>
+            </div>
+
+            <!-- Petunjuk Keyboard -->
+            <div class="keyboard-help">
+                Tekan <kbd>Enter</kbd> untuk hasil, <kbd>Backsp</kbd> untuk hapus, <kbd>Esc</kbd> untuk hapus semua
+            </div>
+
+            <!-- Panel Samping Riwayat (Drawer) -->
+            <div class="history-drawer" id="history-drawer">
+                <div class="history-header">
+                    <div class="history-title">Riwayat</div>
+                    <button class="close-history" id="close-history-btn">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="history-list" id="history-list">
+                    <!-- Item riwayat dimuat dinamis -->
+                </div>
+                <button class="clear-history-btn" onclick="clearHistory()">Hapus Semua Riwayat</button>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
